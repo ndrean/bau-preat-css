@@ -1,0 +1,40 @@
+{
+  "name": "bau-reactcss",
+  "private": false,
+  "version": "0.1.1",
+  "description": "CSS-in-JS for PreactJS",
+  "author": "Neven Drean",
+  "license": "BSD",
+  "homepage": "https://github.com/ndrean/bau-preact-css",
+  "keywords": [
+    "Preact",
+    "css-in-js",
+    "css"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ndrean/bau-preact-css"
+  },
+  "bugs": {
+    "url": "https://github.com/ndrean/bau-preact-css/issues"
+  },
+  "type": "module",
+  "files": [
+    "./src/bau-preactcss.js",
+    ".src/bau-preactcss.d.ts"
+  ],
+  "types": "./src/bau-preactcss.d.ts",
+  "main": "bau-preactcss",
+  "module": "./src/bau-preactcss.js",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "vite": "^4.3.9"
+  },
+  "peerdependencies": {
+    "preact": "^10.15.1"
+  }
+}
