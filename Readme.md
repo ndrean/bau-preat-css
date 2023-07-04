@@ -2,7 +2,7 @@
 
 This package is based on BauCSS and adds a `styled` component for Preact.
 
-[![npm bundle size](https://img.badgesize.io/ndrean/bau-preact-css/main/src/bau-preactcss.js?compression=gzip)](https://bundlephobia.com/package/bau-preactcss@0.1.1)
+[![npm bundle size](https://img.badgesize.io/ndrean/bau-preact-css/main/src/bau-preactcss.js?compression=gzip)](https://bundlephobia.com/package/bau-preactcss@0.1.0)
 
 ## Usage
 
