@@ -1,7 +1,7 @@
 {
-  "name": "bau-reactcss",
+  "name": "bau-preactcss",
   "private": false,
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "CSS-in-JS for PreactJS",
   "author": "Neven Drean",
   "license": "BSD",
@@ -23,7 +23,6 @@
     "./src/bau-preactcss.js",
     ".src/bau-preactcss.d.ts"
   ],
-  "types": "./src/bau-preactcss.d.ts",
   "main": "bau-preactcss",
   "module": "./src/bau-preactcss.js",
   "scripts": {

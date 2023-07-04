@@ -8,8 +8,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "preact": "^10.13.1",
-    "bau-preactcss": "0.1.0"
+    "preact": "^10.15.1",
+    "bau-preactcss": "0.1.1"
   },
   "devDependencies": {
     "@preact/preset-vite": "^2.5.0",
