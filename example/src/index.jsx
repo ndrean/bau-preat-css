@@ -4,7 +4,7 @@ import preactLogo from "./assets/preact.svg";
 import viteLogo from "/vite.svg";
 // import "./style.css";
 
-import BauPreactCss from "bau-preactcss.js";
+import BauPreactCss from "bau-preactcss";
 import { Btn } from "./button.jsx";
 
 const { css, styled, keyframes, createGlobalStyles } = BauPreactCss();
