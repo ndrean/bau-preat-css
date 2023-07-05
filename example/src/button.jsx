@@ -1,6 +1,8 @@
+// import BauPreactCss from "../../src/bau-preactcss";
 import BauPreactCss from "bau-preactcss";
+// import cln from "../../src/cln.js";
 
-const { styled, keyframes } = BauPreactCss();
+const { styled, css, keyframes } = BauPreactCss();
 
 const rescale = keyframes`
     0% {transform: scale(0.5)}
@@ -25,11 +27,28 @@ const styles = (props) => ({
     `,
 });
 
-const Btn = (props) =>
-  styled("button", props)`
-    ${styles(props).root +
-    (props.danger ? styles(props).danger : "") +
-    (props.disabled ? styles(props).disabled : "")}
-  `;
+const StBtn = (props) => styled("button", props)`
+  ${styles(props).root +
+  (props.danger ? styles(props).danger : "") +
+  (props.disabled ? styles(props).disabled : "")}
+`;
 
-export { Btn };
+const CondStBtn = (props) => styled("button", props)`
+  ${styles(props).root}
+  ${styles(props)}
+`;
+
+const BasicBtn = (props) => {
+  const { children, ...rest } = props;
+  return (
+    <button
+      className={css`
+        ${styles(props).root}
+      `}
+      {...rest}
+    >
+      {children}
+    </button>
+  );
+};
+export { StBtn, BasicBtn, CondStBtn };

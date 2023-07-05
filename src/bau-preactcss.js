@@ -16,44 +16,59 @@ const addStyle = (target, className, cssText) => {
   target.append(style);
 };
 
-const compile = (strings, args) =>
-  strings.reduce((acc, value, i) => acc + value + (args[i] ?? ""), "");
+const merge = (type, compiled, target) => {
+  const name = toHash(compiled);
+  !document.getElementById(name) && type
+    ? addStyle(target, name, `${type}${name} { ${compiled}}`)
+    : addStyle(target, name, compiled);
+  return name;
+};
 
-export default function BauPreactCss({
+const compileStyles = (rest, strings, args) =>
+  strings.reduce((acc, value, i) => {
+    if (typeof args[i] !== "object") {
+      return acc + value + (args[i] ?? "");
+    } else {
+      const otherProps = Object.keys(rest).filter(
+        (k) => typeof rest[k] !== "function" && rest[k]
+      );
+      const condCss = Object.entries(args[i]).reduce((accn, [k, v]) => {
+        return otherProps.includes(k) ? accn + v : accn;
+      }, "");
+      return acc + value + condCss;
+    }
+  }, "");
+
+export default function BauReactCss({
   document = window.document,
   target = document.head,
 } = {}) {
   const styled =
     (tag, props) =>
     (strings, ...args) => {
-      const newClass = classIt((name, compiled) => `.${name} { ${compiled} }`)(
-        strings,
-        ...args
-      );
       const { className, children, ...rest } = props;
+      const compiledStyles = compileStyles(rest, strings, args);
+      const name = merge(".", compiledStyles, target);
+
       return h(
         tag,
-        { className: classNames(newClass, className), ...rest },
+        {
+          className: classNames(name, className),
+          ...rest,
+        },
         children
       );
     };
 
-  const classIt =
-    (styleMake) =>
-    (strings, ...args) => {
-      const compiled = compile(strings, args);
-      const name = toHash(compiled);
-      !document.getElementById(name) &&
-        addStyle(target, name, styleMake(name, compiled));
-      return name;
-    };
+  const mergeIt =
+    (type) =>
+    (strings, ...args) =>
+      merge(type, compileStyles("", strings, args), target);
 
   return {
     styled,
-    css: classIt((className, compiled) => `.${className} { ${compiled} }`),
-    keyframes: classIt(
-      (name, compiled) => `@keyframes ${name} { ${compiled} }`
-    ),
-    createGlobalStyles: classIt((name, compiled) => compiled),
+    css: mergeIt("."),
+    keyframes: mergeIt("@keyframes "),
+    createGlobalStyles: mergeIt(),
   };
 }

@@ -2,10 +2,10 @@ import { render } from "preact";
 import { useState } from "preact/hooks";
 import preactLogo from "./assets/preact.svg";
 import viteLogo from "/vite.svg";
-// import "./style.css";
 
+// import BauPreactCss from "../../src/bau-preactcss";
 import BauPreactCss from "bau-preactcss";
-import { Btn } from "./button.jsx";
+import { BasicBtn, StBtn, CondStBtn } from "./button.jsx";
 
 const { css, styled, keyframes, createGlobalStyles } = BauPreactCss();
 
@@ -186,13 +186,29 @@ export function App() {
         Click on the Vite and Preact logos to learn more
       </p>
       <p>Conditional classes</p>
-      <Btn onClick={() => alert("hi")}>Base style</Btn>
-      <Btn danger="true" onClick={() => alert("danger")}>
-        Danger click
-      </Btn>
-      <Btn disabled size={1.5}>
-        Danger disabled
-      </Btn>
+      <BasicBtn onClick={() => alert("hi")}>Base style</BasicBtn>
+      <StBtn danger="true" onClick={() => alert("danger")}>
+        Conditional v1
+      </StBtn>
+      <CondStBtn
+        disabled
+        size={1.2}
+        className={css`
+          box-shadow: 6px -6px teal;
+        `}
+      >
+        Conditional v2
+      </CondStBtn>
+      <CondStBtn
+        className={css`
+          box-shadow: 6px -6px bisque;
+        `}
+        danger="true"
+        size={1.2}
+        onClick={() => alert(2)}
+      >
+        Conditional v2
+      </CondStBtn>
     </>
   );
 }
