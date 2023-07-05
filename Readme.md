@@ -63,20 +63,61 @@ createGlobalStyles`
 
 ## Example of conditional classes
 
+You have two ways to use it. Define a function or object that returns CSS strings:
+
 ```jsx
 const styles = (props) => {
-    base: `color: blue;`,
-    danger: `color: danger`;
+  base: `
+    cursor: pointer;
+    font-size: ${props.size ?? 1}em;
+    border-radius: 0.3em;
+    padding: 0.3em;
+  `,
+  danger: `
+    color: red;
+    animation: ${rescale} 1s ease infinite;
+  `,
+  disabled: `
+    pointer-events: none;
+    opacity: ${props.opacity};
+  `;
 }
+```
 
+You can do:
+
+```jsx
 const Btn = (props)=> styled('button', props)`
     ${styles(props).base +
     props.danger ? styles(props).danger : ""
     }
 `
-
+// and use it
 <Btn>Base button</Btn>
 <Btn danger="true" onClick={()=> alert('danger')}>Danger button</Btn>
+```
+
+The primitive `styled` lets you read the styles defined as above from the props:
+
+```jsx
+const Button = (props) => styled("button", props)`
+  ${styles(props).base}
+  ${styles(props)}
+`;
+```
+
+and you can use it:
+
+```jsx
+<Button>Base Button</Button>
+<Button
+  danger="true"
+  className={css`
+    box-shadow: 6px -6px bisque;
+  `}
+>
+  Shadowed Danger
+</Button>;
 ```
 
 ## Example of class extension of a styled component
