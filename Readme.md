@@ -20,10 +20,10 @@ const { css, styled, keyframes, createGlobaStyles } = BauPreactCss();
 
 ```jsx
 const class = css`
-    color: midnightblue;
+    color: var(--main-color);
 `;
 
-<p className={class} >A blue paragraph</p>
+<p className={class} >A paragraph</p>
 ```
 
 ## Create a styled component

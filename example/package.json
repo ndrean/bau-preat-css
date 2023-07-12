@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "preact": "^10.15.1",
-    "bau-preactcss": "0.1.2"
+    "bau-preactcss": "0.1.3"
   },
   "devDependencies": {
     "@preact/preset-vite": "^2.5.0",
